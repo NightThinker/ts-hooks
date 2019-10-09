@@ -1,26 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+	const textInput = useRef<HTMLInputElement>(null);
+
+	function handleClick() {
+		console.log(textInput);
+		if (textInput.current) {
+			console.log(textInput.current.value);
+			textInput.current.focus();
+		}
+	}
+
+	return (
+		<div>
+			<input ref={textInput} type='text' />
+
+			<input type='button' value='Focus the text input' onClick={handleClick} />
+		</div>
+	);
+};
 
 export default App;
